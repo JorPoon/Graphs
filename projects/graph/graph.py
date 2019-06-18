@@ -51,7 +51,7 @@ class Graph:
         beginning from starting_vertex.
         """
         # pass
-                # Create an empty set to store visited nodes
+        # Create an empty set to store visited nodes
         visited = set()
         # Create an empty Stack and push the starting vertex
         s = Stack()
@@ -124,7 +124,28 @@ class Graph:
         starting_vertex to destination_vertex in
         depth-first order.
         """
-        pass  # TODO
+        visited = set()
+        s = Stack()
+        s.push([starting_vertex])
+
+        while s.size() > 0:
+            # print(s.stack)
+            path = s.stack.pop()
+            # print(path)
+            v = path[-1]
+
+            if v == destination_vertex:
+                return path
+            if v not in visited:
+                visited.add(v)
+        
+                for neighbor in self.vertices[v]:
+                    copy = list(path)
+                    copy.append(neighbor)
+                    s.push(copy)
+        
+
+
 
 
 
