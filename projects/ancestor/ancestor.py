@@ -73,3 +73,4 @@ def earliest_ancestor(ancestors, start):
         return min(results)
     return dfs(start)
 
+# test passed 
