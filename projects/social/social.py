@@ -60,14 +60,39 @@ class SocialGraph:
         # !!!! IMPLEMENT ME
 
         # Add users
-        for i in range(0, numUsers):
-            self.addUser(i)
+        # for i in range(0, numUsers):
+        #     self.addUser(i)
 
         # Create friendships
-        friendships_combo = []
-        for j in self.users:
+        # friendships_combo = []
+        # for j in self.users:
     
-    def bfs(self, user_id, targets):
+
+    def bfs(self, user_start, target):
+
+    
+        visited = Queue()
+        stored = set()
+        visited.enqueue([user_start])
+
+        while visited.size() > 0:
+            path = visited.dequeue()
+            v = path[-1]
+        
+            if v == target:
+                return path
+            if v not in stored:
+                stored.add(v)
+
+                for neighbor in self.friendships[v]:
+                    copy = list(path)
+                    copy.append(neighbor)
+                    visited.enqueue(copy)
+        return None
+    
+
+        
+
 
 
 
