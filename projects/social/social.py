@@ -1,4 +1,4 @@
-from random import random
+import random
 
 class Queue():
     def __init__(self):
@@ -60,12 +60,21 @@ class SocialGraph:
         # !!!! IMPLEMENT ME
 
         # Add users
-        # for i in range(0, numUsers):
-        #     self.addUser(i)
+        for i in range(0, numUsers):
+            self.addUser(i)
 
         # Create friendships
-        # friendships_combo = []
-        # for j in self.users:
+        friendships_combo = []
+        for user in self.users:
+            for friend in range(user + 1, self.lastID + 1):
+                friendships_combo.append((user, friend))
+        
+        random.shuffle(friendships_combo)
+
+        for friend in range((numUsers * avgFriendships)//2):
+            friendship =  friendships_combo[friend]
+            self.addFriendship(friendship[0], friendship[1])
+
     
 
     def bfs(self, user_start, target):
@@ -107,7 +116,12 @@ class SocialGraph:
         """
         visited = {}  # Note that this is a dictionary, not a set
         # !!!! IMPLEMENT ME
-        return visited
+        for i in range(1,len(self.friendships)+1):
+            visited[i] = self.bfs(userID, i)
+        
+        shortest = {k: v for k, v in visited.items() if v is not None}
+
+        return shortest
 
 
 if __name__ == '__main__':
